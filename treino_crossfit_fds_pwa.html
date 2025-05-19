@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treino Crossfit FDS</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 0; }
+    .container { max-width: 500px; margin: 24px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0001; padding: 24px; }
+    h1 { text-align: center; color: #2d3748; }
+    h2 { color: #3182ce; margin-top: 32px; }
+    ul { list-style: none; padding: 0; }
+    li { display: flex; align-items: center; margin-bottom: 12px; }
+    label { flex: 1; margin-left: 8px; }
+    .reset-btn { background: #3182ce; color: #fff; border: none; border-radius: 6px; padding: 8px 16px; margin: 16px 0; cursor: pointer; font-size: 1rem; }
+    .reset-btn:hover { background: #225ea8; }
+    .footer { text-align: center; color: #888; font-size: 0.9em; margin-top: 32px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Treino Crossfit FDS</h1>
+    <h2>Sábado</h2>
+    <ul id="sabado-list"></ul>
+    <button class="reset-btn" onclick="resetChecks('sabado')">Limpar Sábado</button>
+    <h2>Domingo</h2>
+    <ul id="domingo-list"></ul>
+    <button class="reset-btn" onclick="resetChecks('domingo')">Limpar Domingo</button>
+    <div class="footer">Desenvolvido por IA • PWA para treino pessoal</div>
+  </div>
+  <script>
+    const sabado = [
+      "Agachamento Búlgaro (unilateral) — 4 x 8-12 (cada perna)",
+      "Leg Press ou Agachamento Hack — 3 x 10-12",
+      "Levantamento Terra Romeno — 4 x 8-12",
+      "Mesa Flexora ou Stiff com halteres — 3 x 10-12",
+      "Cadeira Abdutora ou Band Walk — 3 x 15-20",
+      "Panturrilha em pé — 4 x 15-20",
+      "Prancha com elevação de perna — 3 x 40 seg",
+      "Dead Bug — 3 x 15",
+      "Extensão de punho com halter — 3 x 15",
+      "Flexão de punho com halter — 3 x 15",
+      "Pronação e supinação com halter leve — 3 x 12",
+      "Farmer’s Walk — 2-3 x 40 seg"
+    ];
+    const domingo = [
+      "Supino com Halteres — 4 x 8-12",
+      "Pullover com Halter — 3 x 10-15",
+      "Crucifixo com Halteres ou Peck Deck — 3 x 10-12",
+      "Remada Unilateral com Halter — 4 x 8-12 (cada braço)",
+      "Puxada na frente (barra ou polia) — 3 x 10-12",
+      "Desenvolvimento com Halteres — 4 x 8-12",
+      "Elevação lateral com halteres — 3 x 12-15",
+      "Rosca Martelo — 3 x 12-15",
+      "Rosca Direta com barra ou halteres — 3 x 10-12",
+      "Tríceps Testa com Halteres — 3 x 12-15",
+      "Tríceps Corda ou Francês — 3 x 10-12",
+      "Face Pull (cabo ou elástico) — 3 x 15-20",
+      "Mobilidade de ombro (pass-through/bastão) — 2 x 15",
+      "Alongamento de antebraço — 2 x 30 seg cada posição",
+      "Mobilidade de punho (círculos com as mãos) — 2 x 15 para cada lado"
+    ];
+    function renderList(day, arr) {
+      const ul = document.getElementById(day + '-list');
+      ul.innerHTML = '';
+      arr.forEach((ex, i) => {
+        const li = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `${day}-ex${i}`;
+        checkbox.checked = localStorage.getItem(checkbox.id) === 'true';
+        checkbox.addEventListener('change', () => {
+          localStorage.setItem(checkbox.id, checkbox.checked);
+        });
+        const label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = ex;
+        li.appendChild(checkbox);
+        li.appendChild(label);
+        ul.appendChild(li);
+      });
+    }
+    function resetChecks(day) {
+      const arr = day === 'sabado' ? sabado : domingo;
+      arr.forEach((_, i) => {
+        const id = `${day}-ex${i}`;
+        localStorage.removeItem(id);
+        document.getElementById(id).checked = false;
+      });
+    }
+    renderList('sabado', sabado);
+    renderList('domingo', domingo);
+  </script>
+</body>
+</html>
