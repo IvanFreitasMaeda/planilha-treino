@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treino Crossfit FDS</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #3182ce 0%, #63b3ed 100%);
+      margin: 0;
+      min-height: 100vh;
+    }
+    .header {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 8px #0001;
+      padding: 20px 0 10px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .header h1 {
+      margin: 0;
+      color: #2b6cb0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    .container {
+      max-width: 480px;
+      margin: 32px auto 24px auto;
+      background: rgba(255,255,255,0.98);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #0002;
+      padding: 28px 18px 18px 18px;
+    }
+    h2 {
+      color: #3182ce;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      border-left: 5px solid #3182ce;
+      padding-left: 10px;
+      background: linear-gradient(90deg, #ebf8ff 60%, transparent 100%);
+      border-radius: 6px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px 0;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 10px 12px;
+      box-shadow: 0 1px 4px #0001;
+      transition: background 0.2s;
+    }
+    li.checked {
+      background: linear-gradient(90deg, #c6f6d5 60%, #f1f5f9 100%);
+      opacity: 0.7;
+      text-decoration: line-through;
+    }
+    .checkbox {
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #3182ce;
+      border-radius: 50%;
+      margin-right: 12px;
+      position: relative;
+      outline: none;
+      cursor: pointer;
+      background: #fff;
+      transition: border 0.2s;
+    }
+    .checkbox:checked {
+      border: 2px solid #38a169;
+      background: #38a169;
+    }
+    .checkbox:checked::after {
+      content: '\2713';
+      color: #fff;
+      font-size: 1.2em;
+      position: absolute;
+      left: 4px;
+      top: 0px;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    label {
+      flex: 1;
+      margin-left: 2px;
+      font-size: 1.05em;
+      color: #2d3748;
+      cursor: pointer;
+      user-select: none;
+    }
+    .reset-btn {
+      background: linear-gradient(90deg, #3182ce 60%, #63b3ed 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      margin: 16px 0 0 0;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      box-shadow: 0 2px 8px #3182ce22;
+      transition: background 0.2s;
+      display: block;
+      width: 100%;
+    }
+    .reset-btn:hover {
+      background: linear-gradient(90deg, #225ea8 60%, #4299e1 100%);
+    }
+    .footer {
+      text-align: center;
+      color: #888;
+      font-size: 0.95em;
+      margin-top: 32px;
+      padding-bottom: 12px;
+    }
+    @media (max-width: 600px) {
+      .container { margin: 12px 2px; padding: 12px 2px 8px 2px; }
+      .header h1 { font-size: 1.3rem; }
+      h2 { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Treino Musculação FDS</h1>
+  </div>
+  <div class="container">
+    <h2>Sábado</h2>
+    <ul id="sabado-list"></ul>
+    <button class="reset-btn" onclick="resetChecks('sabado')">Limpar Sábado</button>
+    <h2>Domingo</h2>
+    <ul id="domingo-list"></ul>
+    <button class="reset-btn" onclick="resetChecks('domingo')">Limpar Domingo</button>
+    <div class="footer">Desenvolvido por IA • PWA para treino pessoal</div>
+  </div>
+  <script>
+    const sabado = [
+      "Agachamento Búlgaro (unilateral) — 4 x 8-12 (cada perna)",
+      "Leg Press ou Agachamento Hack — 3 x 10-12",
+      "Levantamento Terra Romeno — 4 x 8-12",
+      "Mesa Flexora ou Stiff com halteres — 3 x 10-12",
+      "Cadeira Abdutora ou Band Walk — 3 x 15-20",
+      "Panturrilha em pé — 4 x 15-20",
+      "Prancha com elevação de perna — 3 x 40 seg",
+      "Dead Bug — 3 x 15",
+      "Extensão de punho com halter — 3 x 15",
+      "Flexão de punho com halter — 3 x 15",
+      "Pronação e supinação com halter leve — 3 x 12",
+      "Farmer’s Walk — 2-3 x 40 seg"
+    ];
+    const domingo = [
+      "Supino com Halteres — 4 x 8-12",
+      "Pullover com Halter — 3 x 10-15",
+      "Crucifixo com Halteres ou Peck Deck — 3 x 10-12",
+      "Remada Unilateral com Halter — 4 x 8-12 (cada braço)",
+      "Puxada na frente (barra ou polia) — 3 x 10-12",
+      "Desenvolvimento com Halteres — 4 x 8-12",
+      "Elevação lateral com halteres — 3 x 12-15",
+      "Rosca Martelo — 3 x 12-15",
+      "Rosca Direta com barra ou halteres — 3 x 10-12",
+      "Tríceps Testa com Halteres — 3 x 12-15",
+      "Tríceps Corda ou Francês — 3 x 10-12",
+      "Face Pull (cabo ou elástico) — 3 x 15-20",
+      "Mobilidade de ombro (pass-through/bastão) — 2 x 15",
+      "Alongamento de antebraço — 2 x 30 seg cada posição",
+      "Mobilidade de punho (círculos com as mãos) — 2 x 15 para cada lado"
+    ];
+    function renderList(day, arr) {
+      const ul = document.getElementById(day + '-list');
+      ul.innerHTML = '';
+      arr.forEach((ex, i) => {
+        const li = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'checkbox';
+        checkbox.id = `${day}-ex${i}`;
+        checkbox.checked = localStorage.getItem(checkbox.id) === 'true';
+        checkbox.addEventListener('change', () => {
+          localStorage.setItem(checkbox.id, checkbox.checked);
+          li.classList.toggle('checked', checkbox.checked);
+        });
+        if (checkbox.checked) li.classList.add('checked');
+        const label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = ex;
+        li.appendChild(checkbox);
+        li.appendChild(label);
+        ul.appendChild(li);
+      });
+    }
+    function resetChecks(day) {
+      const arr = day === 'sabado' ? sabado : domingo;
+      arr.forEach((_, i) => {
+        const id = `${day}-ex${i}`;
+        localStorage.removeItem(id);
+        const cb = document.getElementById(id);
+        if (cb) {
+          cb.checked = false;
+          cb.parentElement.classList.remove('checked');
+        }
+      });
+    }
+    renderList('sabado', sabado);
+    renderList('domingo', domingo);
+  </script>
+</body>
+</html>
