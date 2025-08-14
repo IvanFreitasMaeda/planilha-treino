@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Treino Crossfit FDS</title>
+  <title>Treino Musculação FDS Hipertrofia</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
@@ -141,46 +140,64 @@
 </head>
 <body>
   <div class="header">
-    <h1>Treino Musculação FDS</h1>
+    <h1>Treino Musculação FDS Hipertrofia</h1>
   </div>
   <div class="container">
-    <h2>Sábado</h2>
-    <ul id="sabado-list"></ul>
-    <button class="reset-btn" onclick="resetChecks('sabado')">Limpar Sábado</button>
-    <h2>Domingo</h2>
-    <ul id="domingo-list"></ul>
-    <button class="reset-btn" onclick="resetChecks('domingo')">Limpar Domingo</button>
+    <h2>Dia 1 – Peito, Tríceps e Abdômen</h2>
+    <ul id="dia1-list"></ul>
+    <button class="reset-btn" onclick="resetChecks('dia1')">Limpar Dia 1</button>
+    <h2>Dia 2 – Costas, Bíceps e Antebraço</h2>
+    <ul id="dia2-list"></ul>
+    <button class="reset-btn" onclick="resetChecks('dia2')">Limpar Dia 2</button>
+    <h2>Dia 3 – Pernas, Glúteos e Panturrilha</h2>
+    <ul id="dia3-list"></ul>
+    <button class="reset-btn" onclick="resetChecks('dia3')">Limpar Dia 3</button>
+    <h2>Dia 4 – Ombros, Core e Mobilidade</h2>
+    <ul id="dia4-list"></ul>
+    <button class="reset-btn" onclick="resetChecks('dia4')">Limpar Dia 4</button>
+    <div class="footer">Desenvolvido por IA • PWA para treino pessoal</div>
+  </div>
   <script>
-    const sabado = [
-      "Agachamento Búlgaro (unilateral) — 4 x 8-12 (cada perna)",
-      "Leg Press ou Agachamento Hack — 3 x 10-12",
-      "Levantamento Terra Romeno — 4 x 8-12",
-      "Mesa Flexora ou Stiff com halteres — 3 x 10-12",
-      "Cadeira Abdutora ou Band Walk — 3 x 15-20",
-      "Panturrilha em pé — 4 x 15-20",
-      "Prancha com elevação de perna — 3 x 40 seg",
-      "Dead Bug — 3 x 15",
-      "Extensão de punho com halter — 3 x 15",
-      "Flexão de punho com halter — 3 x 15",
-      "Pronação e supinação com halter leve — 3 x 12",
-      "Farmer’s Walk — 2-3 x 40 seg"
+    const dia1 = [
+      "Supino reto com barra — 4x8-12",
+      "Supino inclinado com halteres — 3x8-12",
+      "Crucifixo inclinado — 3x10-15",
+      "Paralelas (ou mergulho) — 3x8-12",
+      "Tríceps corda — 3x10-15",
+      "Tríceps francês — 3x10-12",
+      "Abdominal infra no banco — 3x15-20",
+      "Prancha — 3x40s"
     ];
-    const domingo = [
-      "Supino com Halteres — 4 x 8-12",
-      "Pullover com Halter — 3 x 10-15",
-      "Crucifixo com Halteres ou Peck Deck — 3 x 10-12",
-      "Remada Unilateral com Halter — 4 x 8-12 (cada braço)",
-      "Puxada na frente (barra ou polia) — 3 x 10-12",
-      "Desenvolvimento com Halteres — 4 x 8-12",
-      "Elevação lateral com halteres — 3 x 12-15",
-      "Rosca Martelo — 3 x 12-15",
-      "Rosca Direta com barra ou halteres — 3 x 10-12",
-      "Tríceps Testa com Halteres — 3 x 12-15",
-      "Tríceps Corda ou Francês — 3 x 10-12",
-      "Face Pull (cabo ou elástico) — 3 x 15-20",
-      "Mobilidade de ombro (pass-through/bastão) — 2 x 15",
-      "Alongamento de antebraço — 2 x 30 seg cada posição",
-      "Mobilidade de punho (círculos com as mãos) — 2 x 15 para cada lado"
+    const dia2 = [
+      "Barra fixa (ou puxada) — 4x8-12",
+      "Remada curvada com barra — 4x8-12",
+      "Remada unilateral com halter — 3x10-12",
+      "Pulldown frente — 3x10-12",
+      "Rosca direta — 3x10-12",
+      "Rosca alternada — 3x10-12",
+      "Rosca martelo — 3x12",
+      "Extensão de punho — 2x15",
+      "Flexão de punho — 2x15"
+    ];
+    const dia3 = [
+      "Agachamento livre — 4x8-12",
+      "Leg press — 4x10-12",
+      "Cadeira extensora — 3x12-15",
+      "Stiff — 3x10-12",
+      "Mesa flexora — 3x12-15",
+      "Cadeira abdutora — 3x15-20",
+      "Glúteo máquina ou 4 apoios — 3x15",
+      "Panturrilha em pé — 4x15-20"
+    ];
+    const dia4 = [
+      "Desenvolvimento com halteres — 4x8-12",
+      "Elevação lateral — 3x12-15",
+      "Elevação frontal — 3x12-15",
+      "Crucifixo inverso (deltoide posterior) — 3x12-15",
+      "Face pull — 3x15-20",
+      "Abdominal oblíquo — 3x15-20",
+      "Prancha lateral — 3x30s cada lado",
+      "Mobilidade de ombro e quadril — 10min"
     ];
     function renderList(day, arr) {
       const ul = document.getElementById(day + '-list');
@@ -206,7 +223,7 @@
       });
     }
     function resetChecks(day) {
-      const arr = day === 'sabado' ? sabado : domingo;
+      const arr = day === 'dia1' ? dia1 : day === 'dia2' ? dia2 : day === 'dia3' ? dia3 : dia4;
       arr.forEach((_, i) => {
         const id = `${day}-ex${i}`;
         localStorage.removeItem(id);
@@ -217,8 +234,10 @@
         }
       });
     }
-    renderList('sabado', sabado);
-    renderList('domingo', domingo);
+    renderList('dia1', dia1);
+    renderList('dia2', dia2);
+    renderList('dia3', dia3);
+    renderList('dia4', dia4);
   </script>
 </body>
 </html>
